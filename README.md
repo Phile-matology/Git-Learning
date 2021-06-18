@@ -12,3 +12,5 @@ I'll test the latter.
 
 It's said that pull and fetch have different ways to influence the local storage.
 I'll test it by changing this README text.
+'pull' is prove to be able to merge itself into local storage.
+Now I'll test the function 'fetch'.
