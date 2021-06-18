@@ -13,6 +13,7 @@ git commit -m "提交备注"
 git log
 打印Git仓库提交日志
 提供信息：commit编号，作者，时间，备注
+输入字母q退出
 
 git branch（+ 分支名称）
 查看Git仓库分支情况
