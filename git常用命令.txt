@@ -44,6 +44,7 @@ git reset HEAD <file>
 git commit -m "提交备注"
 将已添加文件提交至仓库并注释提交备注
 -a 跳过add步骤，直接将未追踪或者未暂存修改内容提交
+i开始编辑，esc退出编辑，输入:wq保存退出
 --amend 替代上一次提交，修改小错误
 
 git log
