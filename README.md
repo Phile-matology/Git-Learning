@@ -9,3 +9,6 @@ This is a testing information.
 If so, maybe I should pull request and merge the new branch.
 Oh! I discover the choices below.
 I'll test the latter.
+
+It's said that pull and fetch have different ways to influence the local storage.
+I'll test it by changing this README text.
