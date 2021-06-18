@@ -1,48 +1,85 @@
+#计划按照开发操作习惯顺序组织整体，对于同一客体的操作集中
+
+PART 1.通用设置
 git status 查看仓库状态
 返回是否为Git仓库，当前分支，是否有未追踪文件，是否有新追踪文件需提交
+-s:格式更紧凑
 
+创建.gitignore 文件git 
+https://github.com/github/gitignore 在此处寻找特定语言的帮助
+
+git diff
+查看尚未暂存的文件更新了哪些部分
+（--staged） 比对已暂存文件与最后一次提交之间的差距
+
+git remote
+查看远程仓库
+-v 显示简写与对应的url
+add <shortname> <url> 添加远程仓库
+PART 2.文件状态管理
 git init
 初始化或重新初始化为Git仓库
-
-git add 文件名
-将未追踪文件添加至git仓库
-
-git commit -m "提交备注"
-将已添加文件提交至仓库并注释提交备注
-
-git log
-打印Git仓库提交日志
-提供信息：commit编号，作者，时间，备注
-输入字母q退出
-
-git branch（+ 分支名称）
-查看Git仓库分支情况
-返回所有分支，当前分支前有*
-（新建分支）
-
-git checkout （-b）分支名称
-切换到新分支
-（在当前分支下创建新的分支，并切换至新分支）
-
-git merge （被合并分支名）
-合并分支至当前分支
-会返回合并了什么内容或者已为最新
-
-git branch -d&D 分支名称
-删除&强制删除（如果还有未合并项）分支
-
-git tag -a （版本名称）-m '版本信息'
-查看版本记录（为当前分支添加版本号）
-其作用为永久存储当前分支上的最新commit为一个不可修改的引用
-标签的推送不能用push，需要git push origin <tagname>
-
-#版本号也可以作为checkout的对象，进入分离头指针状态，修改将独立与任何分支，除非为此创建新分支，但这会使新分支移动，与标签不同。
 
 git clone 远程仓库地址
 将远程仓库（github）克隆到本地作为一个Git仓库
 
-git push （远程仓库名，默认origin） （分支名，默认master）
-上传当前master内容作为一个分支，后续需要pull request和merge
+git pull <remote> <branchname>
+拉取远程仓库内容至本地作为一个独立未连接分支(DETACHED HEAD)，需要merge
 
-git pull （远程仓库名，默认origin） （分支名，默认master）
-拉取远程仓库内容至本地作为一个独立未连接分支，需要merge
+git fetch <remote>
+获取远程仓库内容的更新至当前分支
+
+git checkout -- <file>
+撤销工作区中对文件的修改
+
+git add 文件名
+将未追踪文件/已修改文件在git仓库暂存
+
+git reset HEAD <file>
+取消暂存
+
+git commit -m "提交备注"
+将已添加文件提交至仓库并注释提交备注
+-a 跳过add步骤，直接将未追踪或者未暂存修改内容提交
+--amend 替代上一次提交，修改小错误
+
+git log
+打印Git仓库提交日志
+提供信息：commit编号，作者，时间，commit时的备注
+输入字母q退出
+git log --pretty=format:"%h - %an, %ar : %s"
+定制记录显示格式
+
+git mv file-from file-to
+在git中给文件改名
+
+git push <remote> <branchname>
+上传当前master内容作为一个分支，后续需要在远程仓库pull request和merge
+
+PART 3.分支管理
+git branch <+branchname>
+查看Git仓库分支情况
+返回所有分支，当前分支前有*
+<+新建分支>
+
+git checkout <-b> <+branchname>
+切换到新分支
+<+在当前分支下创建新的分支，并切换至新分支>
+
+git merge <branchname>
+合并分支至当前分支
+会返回合并了什么内容或者已为最新
+
+git branch -d&D 分支名称
+删除&强制删除(如果还有未合并项)分支
+
+PART 4.版本管理
+git tag -a <tagname> -m '版本信息'
+查看版本记录<为当前分支添加版本号>
+其作用为永久存储当前分支上的最新commit为一个不可修改的引用
+标签的推送不能用push，需要git push origin <tagname>
+补打tag：<tagname>后加<部分>校验和
+共享tag：git push <remote> <tagname>
+git push <remote> <tagname>
+#版本号也可以作为checkout的对象，进入分离头指针状态，修改将独立与任何分支，除非为此创建新分支，但这会使新分支移动，与标签不同。
+
